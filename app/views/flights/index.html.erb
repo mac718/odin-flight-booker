@@ -1,0 +1,33 @@
+<h1>Flights</h1>
+
+<div class="row">
+  <div class="col-md-6 offset-md-3">
+    <%= form_tag('/flights', method: 'get') do %>
+      <%= label_tag(:origin, 'Select desired depature airport:') %>
+      <%= select_tag(:origin, options_for_select(@airports), class: 'form-control') %>
+      <%= label_tag(:destination, 'Select desired destination airport:') %>
+      <%= select_tag(:destination, options_for_select(@airports), class: 'form-control') %>
+      <%= label_tag(:passenger_number, 'Select number of passengers:') %>
+      <%= select_tag(:passenger_number, options_for_select(@passengers), class: 'form-control') %>    
+      <%= label_tag(:departure_time, 'Select desired depature time:') %>
+      <%= select_tag(:departure_time, options_for_select(@dates), class: 'form-control') %>
+      <%= submit_tag('Find Flights', class: 'btn btn-primary') %>
+    <% end %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6 offset-md-3">
+    <% if @flights && @flights.any? %>
+      <%= form_tag('/booking', method: 'get') do %>
+        <% @flights.each do |flight| %>
+        <% end %>
+      <% end %>
+      <% @flights.each do |flight| %>
+        <p>Flight number: <%= flight.id %></p>
+      <% end %>
+    <% else %>
+      <p>No flights match the selected criteria.</p>
+    <% end %>
+  </div>
+</div>
