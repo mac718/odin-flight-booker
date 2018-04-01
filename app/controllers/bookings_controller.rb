@@ -12,7 +12,6 @@ class BookingsController < ApplicationController
   end
 
   def create
-    #@passenger_number.to_i.times { @booking.passengers.build }
     @booking = Booking.new(booking_params)
 
     if @booking.save!
@@ -22,6 +21,12 @@ class BookingsController < ApplicationController
       flash.now[:danger] = "Problems"
       render :new
     end
+  end
+
+  def show
+    @booking = Booking.find(params[:id])
+    @origin = Airport.find(@booking.flight.origin_id).name 
+    @destination = Airport.find(@booking.flight.destination_id).name
   end
 
   private
