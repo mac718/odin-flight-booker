@@ -1,0 +1,22 @@
+<h4>
+  <table class="table">
+    <thead>
+      <tr>
+        <th class="col" id="a">Flight number</th>
+        <th class="col" id="b">Origin</th>
+        <th class="col" id="c">Destination</th>
+        <th class="col" id="d">Departure time</th>
+        <th class="col" id="e">Flight duration</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= @selected_flight.id %></td>
+        <td><%= @origin_airport%></td>
+        <td><%= @destination_airport %></td>
+        <td><%= @departure_time %></td>
+        <td><%= @duration %></td>
+      </tr>
+    </tbody>
+  </table>
+</h4>

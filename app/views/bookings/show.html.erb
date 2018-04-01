@@ -1,28 +1,7 @@
 <h1>Your Flight</h1>
 
 <div class="container">
-  <h4>
-    <table class="table">
-      <thead>
-        <tr>
-          <th class="col" id="a">Flight number</th>
-          <th class="col" id="b">Origin</th>
-          <th class="col" id="c">Destination</th>
-          <th class="col" id="d">Departure time</th>
-          <th class="col" id="e">Flight duration</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><%= @booking.flight.id %></td>
-          <td><%= @origin%></td>
-          <td><%= @destination %></td>
-          <td><%= @booking.flight.departure_time %></td>
-          <td><%= @booking.flight.duration %></td>
-        </tr>
-      </tbody>
-    </table>
-  </h4>
+  <%= render 'shared/flight_table' %>
   <ul class="list-group">
     <% @booking.passengers.each_with_index do |passenger, i| %>
       <li class="list-group-item">

@@ -16,7 +16,7 @@ class BookingsController < ApplicationController
 
     if @booking.save!
       flash[:success] = "Your flight has been booked!"
-      redirect_to root_url
+      redirect_to booking_path(@booking.id)
     else
       flash.now[:danger] = "Problems"
       render :new
@@ -25,8 +25,11 @@ class BookingsController < ApplicationController
 
   def show
     @booking = Booking.find(params[:id])
-    @origin = Airport.find(@booking.flight.origin_id).name 
-    @destination = Airport.find(@booking.flight.destination_id).name
+    @selected_flight = @booking.flight
+    @origin_airport = Airport.find(@booking.flight.origin_id).name 
+    @destination_airport = Airport.find(@booking.flight.destination_id).name
+    @departure_time = @booking.flight.departure_time
+    @duration = @booking.flight.duration
   end
 
   private
