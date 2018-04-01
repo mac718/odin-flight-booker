@@ -11,7 +11,7 @@
       <%= select_tag(:passenger_number, options_for_select(@passengers), class: 'form-control') %>    
       <%= label_tag(:departure_time, 'Select desired depature time:') %>
       <%= select_tag(:departure_time, options_for_select(@dates), class: 'form-control') %>
-      <%= submit_tag('Find Flights', class: 'btn btn-primary') %>
+      <%= submit_tag('Find Flights', class: 'btn btn-primary search-results-button') %>
     <% end %>
   </div>
 </div>
@@ -19,13 +19,20 @@
 <div class="row">
   <div class="col-md-6 offset-md-3">
     <% if @flights && @flights.any? %>
-      <%= form_tag('/booking', method: 'get') do %>
-        <% @flights.each do |flight| %>
+      <div class="row" id="search-results">
+        <%= form_tag(new_booking_path, method: 'get') do %>
+          <%= hidden_field_tag('passenger_number', @passenger_number) %>
+          <ul class="list-group">
+            <% @flights.each do |flight| %>
+              <li class="list-group-item">
+                <%= radio_button_tag(:selected_flight, "#{flight.id}") %>
+                <%= label_tag(:selected_flight, "Flight number: #{flight.id}, Origin: #{Airport.find(flight.origin_id).name}, Destination: #{Airport.find(flight.destination_id).name}, Departure time: #{flight.departure_time}, Flight Duration: #{flight.duration}") %>
+              </li>
+            <% end %>
+          </ul>
+          <%= submit_tag('Select flight', class: 'btn btn-primary search-results-button') %>
         <% end %>
-      <% end %>
-      <% @flights.each do |flight| %>
-        <p>Flight number: <%= flight.id %></p>
-      <% end %>
+      </div>
     <% else %>
       <p>No flights match the selected criteria.</p>
     <% end %>
