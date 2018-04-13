@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Thanks, <%= @passenger.name %>!</h1>
+    <p>
+      You have successfully booked your flight. Here are the details:
+      <ul>
+        <li>Flight Number: <%= @flight.id %></li>
+        <li>Origin: <%= @flight.origin.name %></li>
+        <li>Destination: <%= @flight.destination.name %></li>
+        <li>Departure Time <%= @flight.departure_time %></li>
+      </ul>
+    </p>
+  </body>
+</html>

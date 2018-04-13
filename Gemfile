@@ -40,6 +40,7 @@ group :development, :test do
   gem 'byebug', platform: :mri
   gem 'rspec-rails'
   gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
+  gem "letter_opener"
 end
 
 group :development do
